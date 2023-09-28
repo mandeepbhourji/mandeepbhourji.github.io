@@ -1,0 +1,52 @@
+<div>
+  <div class="row heading-div">
+    <div class="col-md-2" *ngFor="let country of countries">
+      <button type="button" class="btn btn-link" [ngClass]="country.leagueId == selectedCountry?.leagueId ? 'btn-selected' : 'btn-default'" (click)="onCountrySelect(country)" id="{{country.code}}Select">{{country.name}}</button>
+    </div>
+  
+  </div>
+  
+  <table class="table heading-div" *ngIf="!showSpinner && leagueStandings && !errorMessage" >
+    <thead>
+      <tr>
+        <th scope="col"></th>
+        <th scope="col"></th>
+        <th scope="col">Name</th>
+        <th scope="col">Games</th>
+        <th scope="col">W</th>
+        <th scope="col">L</th>
+        <th scope="col">D</th>
+        <th scope="col">Goal Difference</th>
+        <th scope="col">Points</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let s of leagueStandings; index as i">
+        <td>{{i+1}}</td>
+        <td>
+          <img [src]="s.logo">
+        </td>
+        <td >
+          <a [routerLink]="['/gameDetails', leagueId, s.id]">{{s.name}}</a>
+        </td>
+        <td>{{s.games}}</td>
+        <td>{{s.wins}}</td>
+        <td>{{s.losses}}</td>
+        <td>{{s.draws}}</td>
+        <td>{{s.goalDiff}}</td>
+        <td>{{s.points}}</td>
+      </tr>
+  
+    </tbody>
+  </table>
+</div>
+
+
+<div *ngIf="!showSpinner && errorMessage">
+  <p>Some Error Occured!</p>
+  <p> {{errorMessage}}</p>
+</div>
+
+<div class="spinner-border" role="status" *ngIf="showSpinner">
+  <span class="visually-hidden">Loading...</span>
+</div>

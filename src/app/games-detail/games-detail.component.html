@@ -1,0 +1,43 @@
+<div class="spinner-border" role="status" *ngIf="showSpinner">
+    <span class="visually-hidden">Loading...</span>
+</div>
+<div *ngIf="!showSpinner && errorMessage">
+    <p>Some Error Occured!</p>
+    <p> {{errorMessage}}</p>
+</div>
+<div *ngIf="!showSpinner">
+    <table class="table heading-div">
+        <thead>
+            <tr hidden="true">
+                <th scope="col"></th>
+                <th scope="col"></th>
+                <th scope="col"></th>
+                <th scope="col"></th>
+                <th scope="col"></th>
+                <th scope="col"></th>
+                <th scope="col"></th>
+
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let game of gamesDetail">
+                <td> <img [src]="game.teams.home.logo"> </td>
+                <td>
+                    {{game.teams.home.name}}
+                </td>
+                <td> {{game.goals.home}} </td>
+                <td> - </td>
+                <td> {{game.goals.away}} </td>
+                <td> {{game.teams.away.name}} </td>
+                <td> <img [src]="game.teams.away.logo"> </td>
+            </tr>
+        </tbody>
+    </table>
+    <button type="button" (click)="moveToStangings()" class="btn btn-primary">Back</button>
+
+
+</div>
+
+
+
+
