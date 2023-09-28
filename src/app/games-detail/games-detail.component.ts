@@ -19,7 +19,7 @@ export class GamesDetailComponent {
   constructor(private route: ActivatedRoute, private leagueService: LeagueService, private router: Router) {
 
   }
-  ngOnInit() {
+  ngOnInit(): void {
     this.paramSubscription = this.route.params.subscribe(param => {
       this.leagueId = param['leagueId'];
       let teamId = param['teamId'];
@@ -30,8 +30,8 @@ export class GamesDetailComponent {
   moveToStangings(): void {
     this.router.navigate(['home'], { queryParams: { league: this.leagueId } });
   }
-  
-  getTeamDetails(team: number = 0, leagueId: number = 0) {
+
+  getTeamDetails(team: number = 0, leagueId: number = 0): void {
     this.showSpinner = true;
     let numberOfFixtures = 10;
 

@@ -61,7 +61,7 @@ export class LeagueStandingComponent {
 
   }
 
-  getLeagueStanding(leagueId: number = 0) {
+  getLeagueStanding(leagueId: number = 0): void {
     let currentDate = new Date();
     if (this.leagueStandings) {
       this.leagueStandings.length = 0;
@@ -85,7 +85,7 @@ export class LeagueStandingComponent {
     })
   }
 
-  onCountrySelect(country: Country) {
+  onCountrySelect(country: Country): void {
     this.selectedCountry = country;
     this.leagueId = country.leagueId;
     this.getLeagueStanding(country.leagueId);
