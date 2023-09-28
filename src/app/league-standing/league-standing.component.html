@@ -6,6 +6,7 @@
   
   </div>
   
+
   <table class="table heading-div" *ngIf="!showSpinner && leagueStandings && !errorMessage" >
     <thead>
       <tr>
@@ -24,16 +25,16 @@
       <tr *ngFor="let s of leagueStandings; index as i">
         <td>{{i+1}}</td>
         <td>
-          <img [src]="s.logo">
+          <img [src]="s.team?.logo">
         </td>
         <td >
-          <a [routerLink]="['/gameDetails', leagueId, s.id]">{{s.name}}</a>
+          <a [routerLink]="['/gameDetails', leagueId, s.team?.id]">{{s.team?.name}}</a>
         </td>
-        <td>{{s.games}}</td>
-        <td>{{s.wins}}</td>
-        <td>{{s.losses}}</td>
-        <td>{{s.draws}}</td>
-        <td>{{s.goalDiff}}</td>
+        <td>{{s.all?.played}}</td>
+        <td>{{s.all?.win}}</td>
+        <td>{{s.all?.lose}}</td>
+        <td>{{s.all?.draw}}</td>
+        <td>{{s.goalsDiff}}</td>
         <td>{{s.points}}</td>
       </tr>
   

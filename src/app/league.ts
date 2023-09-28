@@ -1,26 +1,37 @@
-export interface League {
-    standings?: Standing[],
-    all?: { lose: number, played: number, win: number, draw: number },
-    goalsDiff: number,
-    points: number,
+export interface Standings {
+    errors?: [],
+    response: [
+        {
+            league: {
+                standings: [
+                    [Standing]
+                ]
+            }
+        }
+    ]
+}
+
+export interface Standing {
+    all?: {
+        played: number,
+        win: number,
+        draw: number,
+        lose: number,
+    },
+    points?: number,
+    goalsDiff?: number,
     team?: {
-        name: string,
         id: number,
+        name: string,
         logo: string
     }
 }
 
-export interface Standing {
-    games?: number,
-    wins?: number,
-    losses?: number,
-    draws?: number,
-    goalDiff?: number,
-    points?: number,
-    name?: string,
-    id?: number,
-    logo?: string,
+
+
+export type JSONValue = boolean | number | string | null | JSONObject | JSONArray;
+interface JSONObject {
+    [x: string]: JSONValue;
 }
 
-
-
+interface JSONArray extends Array<JSONValue> { }

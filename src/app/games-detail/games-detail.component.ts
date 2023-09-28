@@ -37,11 +37,11 @@ export class GamesDetailComponent {
 
     this.fixturesSubscription = this.leagueService.getTeamDetails(team, leagueId, numberOfFixtures).subscribe({
       next: (data) => {
-        if (data && data.length > 0) {
-          this.gamesDetail = data.map((x: GameDetail) => {
+        if (data.response && data.response.length > 0) {
+          this.gamesDetail = data.response.map((x: GameDetail) => {
             return { teams: x.teams, goals: x.goals }
           })
-        } else if (data.errors) {
+        } else if (data.errors && !(data.errors instanceof Array)) {
           this.errorMessage = data.errors[Object.keys(data.errors)[0]];
         }
       },

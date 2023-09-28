@@ -1,3 +1,7 @@
+export interface GameDetails{
+    errors: [],
+    response:[GameDetail]
+}
 export interface GameDetail {
     teams: {
         home: TeamDetails,

@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { Country } from '../country';
-import { League, Standing } from '../league';
+import { Standings, Standing } from '../league';
 import { LeagueService } from '../league.service';
 
 @Component({
@@ -69,23 +69,11 @@ export class LeagueStandingComponent {
     this.showSpinner = true;
     this.leagueStandingSubscription = this.leagueService.getLeagueStanding(leagueId, currentDate.getFullYear()).subscribe({
       next: (data) => {
-        if (data.errors) {
+        if (data.errors && !(data.errors instanceof Array)) {
           this.errorMessage = data.errors[Object.keys(data.errors)[0]];
         }
         else {
-          this.leagueStandings = data.map((x: League) => {
-            return {
-              games: x.all?.played,
-              wins: x.all?.win,
-              losses: x.all?.lose,
-              draws: x.all?.draw,
-              goalDiff: x.goalsDiff,
-              points: x.points,
-              name: x.team?.name,
-              id: x.team?.id,
-              logo: x.team?.logo,
-            }
-          });
+          this.leagueStandings = data.response[0].league.standings[0];
         }
       },
       error: (err) => {
